@@ -34,7 +34,7 @@ function Header() {
               href="#"
               className="text-gray-700 hover:text-gray-900 font-medium"
             >
-              BonbonCar Ký gửi xe
+              Ký gửi xe
             </a>
             <a
               href="#"
@@ -48,7 +48,7 @@ function Header() {
           <div className="hidden md:block">
             <a
               href="#"
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
+              className="px-4 py-2 bg-gray-200 text-gray-600 rounded-3xl font-medium hover:bg-gray-300 hover:text-gray-900 transition-colors"
             >
               Đăng nhập
             </a>
@@ -89,7 +89,7 @@ function Header() {
               href="#"
               className="text-gray-700 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
             >
-              BonbonCar Ký gửi xe
+              Tonicar Ký gửi xe
             </a>
             <a
               href="#"
