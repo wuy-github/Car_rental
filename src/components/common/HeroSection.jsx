@@ -44,13 +44,13 @@ function HeroSection() {
             {/* Cột 1: Địa điểm */}
             <div className="w-full md:w-1/3">
               <label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
-                <FaMapMarkerAlt className="text-blue-500" /> Địa điểm nhận xe
+                <FaMapMarkerAlt className="text-[#54c6a8]" /> Địa điểm nhận xe
               </label>
               <div className="relative">
                 <input
                   type="text"
                   placeholder="Nhập địa điểm, quận, huyện..."
-                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors font-medium text-gray-900"
+                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-[#54c6a8] focus:ring-1 focus:ring-blue-500 transition-colors font-medium text-gray-900"
                 />
               </div>
             </div>
@@ -58,7 +58,7 @@ function HeroSection() {
             {/* Cột 2: Ngày & Giờ Nhận */}
             <div className="w-full md:w-1/4">
               <label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
-                <FaCalendarAlt className="text-blue-500" /> Ngày nhận xe
+                <FaCalendarAlt className="text-[#54c6a8]" /> Ngày nhận xe
               </label>
               <div className="flex gap-2">
                 <input
@@ -76,7 +76,7 @@ function HeroSection() {
             {/* Cột 3: Ngày & Giờ Trả */}
             <div className="w-full md:w-1/4">
               <label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
-                <FaCalendarAlt className="text-blue-500" /> Ngày trả xe
+                <FaCalendarAlt className="text-[#54c6a8]" /> Ngày trả xe
               </label>
               <div className="flex gap-2">
                 <input
