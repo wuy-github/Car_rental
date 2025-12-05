@@ -134,7 +134,7 @@ function Header() {
           <div className="block">
             <Link
               to="login"
-              className="px-5 py-2.5 bg-gray-100 text-gray-700 rounded-full font-medium hover:bg-gray-200 transition-colors "
+              className="px-5 py-2.5 bg-[#54c6a8] text-white hover:text-black rounded-full font-medium hover:bg-gray-200 transition-colors "
             >
               Đăng nhập
             </Link>
