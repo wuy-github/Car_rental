@@ -6,6 +6,8 @@ import Admin from "./Admin/Admin";
 
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/Login";
+import CarDetail from "./pages/CarDetail";
+import CarsList from "./pages/CarsList";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         </Route>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/admin/*" element={<Admin />} />
+        <Route path="/cars" element={<CarsList />} />
+        <Route path="/cars/:id" element={<CarDetail />} />
       </Routes>
     </BrowserRouter>
   );

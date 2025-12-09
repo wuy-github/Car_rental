@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   FaGasPump,
   FaCogs,
@@ -82,9 +83,12 @@ function CarCard({ car }) {
                 <span className="text-xs text-gray-500 font-normal">/ngày</span>
               </p>
             </div>
-            <button className="bg-[#54c6a8] hover:bg-[#3fb094] text-white px-4 py-2 rounded-lg font-bold text-sm transition-colors shadow-sm">
+            <Link
+              to={`/cars/${car.id}`}
+              className="bg-[#54c6a8] hover:bg-[#3fb094] text-white px-4 py-2 rounded-lg font-bold text-sm transition-colors shadow-sm inline-flex items-center justify-center"
+            >
               Chọn xe
-            </button>
+            </Link>
           </div>
         </div>
       </div>

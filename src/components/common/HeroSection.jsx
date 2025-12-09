@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import slide1 from "../../assets/slides/slide1.jpg";
 import slide2 from "../../assets/slides/slide2.jpg";
 import slide3 from "../../assets/slides/slide3.jpg";
@@ -8,7 +9,38 @@ import { FaCalendarAlt, FaClock, FaMapMarkerAlt } from "react-icons/fa";
 
 const heroImg = [slide1, slide2, slide3, slide4, slide5];
 function HeroSection() {
+  const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Controlled search inputs
+  const today = new Date();
+  const pad = (n) => String(n).padStart(2, "0");
+  const yyyy = today.getFullYear();
+  const mm = pad(today.getMonth() + 1);
+  const dd = pad(today.getDate());
+  const todayStr = `${yyyy}-${mm}-${dd}`;
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+  const tyyyy = tomorrow.getFullYear();
+  const tmm = pad(tomorrow.getMonth() + 1);
+  const tdd = pad(tomorrow.getDate());
+  const tomorrowStr = `${tyyyy}-${tmm}-${tdd}`;
+
+  const [location, setLocation] = useState("");
+  const [pickupDate, setPickupDate] = useState(todayStr);
+  const [pickupTime, setPickupTime] = useState("10:00");
+  const [dropDate, setDropDate] = useState(tomorrowStr);
+  const [dropTime, setDropTime] = useState("14:00");
+
+  const handleSearch = () => {
+    const params = new URLSearchParams();
+    if (location) params.set("location", location);
+    if (pickupDate) params.set("pickupDate", pickupDate);
+    if (pickupTime) params.set("pickupTime", pickupTime);
+    if (dropDate) params.set("dropDate", dropDate);
+    if (dropTime) params.set("dropTime", dropTime);
+    navigate(`/cars?${params.toString()}`);
+  };
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) =>
@@ -49,6 +81,8 @@ function HeroSection() {
               <div className="relative">
                 <input
                   type="text"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
                   placeholder="Nhập địa điểm, quận, huyện..."
                   className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-[#54c6a8] focus:ring-1 focus:ring-blue-500 transition-colors font-medium text-gray-900"
                 />
@@ -63,11 +97,14 @@ function HeroSection() {
               <div className="flex gap-2">
                 <input
                   type="date"
+                  value={pickupDate}
+                  onChange={(e) => setPickupDate(e.target.value)}
                   className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 font-medium text-gray-700"
                 />
                 <input
                   type="time"
-                  defaultValue="10:00"
+                  value={pickupTime}
+                  onChange={(e) => setPickupTime(e.target.value)}
                   className="w-1/2 p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 font-medium text-gray-700"
                 />
               </div>
@@ -81,11 +118,14 @@ function HeroSection() {
               <div className="flex gap-2">
                 <input
                   type="date"
+                  value={dropDate}
+                  onChange={(e) => setDropDate(e.target.value)}
                   className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 font-medium text-gray-700"
                 />
                 <input
                   type="time"
-                  defaultValue="14:00"
+                  value={dropTime}
+                  onChange={(e) => setDropTime(e.target.value)}
                   className="w-1/2 p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 font-medium text-gray-700"
                 />
               </div>
@@ -93,7 +133,10 @@ function HeroSection() {
 
             {/* Cột 4: Nút Tìm Xe */}
             <div className="w-full md:w-auto">
-              <button className="w-full md:w-auto h-[50px] px-8 bg-[#54c6a8] hover:bg-[#3fb094] text-white font-bold rounded-lg transition-all shadow-md flex items-center justify-center whitespace-nowrap">
+              <button
+                onClick={handleSearch}
+                className="w-full md:w-auto h-[50px] px-8 bg-[#54c6a8] hover:bg-[#3fb094] text-white font-bold rounded-lg transition-all shadow-md flex items-center justify-center whitespace-nowrap"
+              >
                 TÌM XE
               </button>
             </div>
