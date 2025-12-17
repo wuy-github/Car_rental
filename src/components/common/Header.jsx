@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/useAuth";
 // Icons
 import { ChevronUpDownIcon, CheckIcon } from "@heroicons/react/20/solid";
 import { FaLocationDot } from "react-icons/fa6";
@@ -163,18 +164,108 @@ function Header() {
             ))}
           </div>
 
-          <div className="block">
-            <Link
-              to="login"
-              className="px-5 py-2.5 bg-[#54c6a8] text-white hover:text-black rounded-full font-medium hover:bg-gray-200 transition-colors "
-            >
-              Đăng nhập
-            </Link>
+          <div className="flex items-center gap-3">
+            <AuthToggle />
           </div>
         </div>
       </div>
     </nav>
   );
+
+  function AuthToggle() {
+    const auth = useAuth();
+    const navigate = useNavigate();
+
+    const [open, setOpen] = useState(false);
+    const ref = useRef(null);
+
+    useEffect(() => {
+      function onDocClick(e) {
+        if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+      }
+      document.addEventListener("click", onDocClick);
+      return () => document.removeEventListener("click", onDocClick);
+    }, []);
+
+    if (auth?.isAuthenticated) {
+      const name = auth.user?.name || "Người dùng";
+      const initials = name.split(" ").slice(-1)[0]?.[0] || "U";
+
+      return (
+        <div className="relative" ref={ref}>
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="flex items-center gap-3 px-2 py-1 rounded-md hover:bg-gray-50 focus:outline-none"
+            aria-haspopup="true"
+            aria-expanded={open}
+          >
+            {auth.user?.avatar ? (
+              <img
+                src={auth.user.avatar}
+                alt="avatar"
+                className="w-9 h-9 rounded-full object-cover"
+              />
+            ) : (
+              <div className="w-9 h-9 rounded-full bg-[#54c6a8] text-white flex items-center justify-center font-semibold">
+                {initials}
+              </div>
+            )}
+            <span className="hidden sm:inline text-sm text-gray-700">
+              {name.split(" ")[0]}
+            </span>
+          </button>
+
+          {open && (
+            <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-50">
+              <Link
+                to="/account#profile"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+              >
+                Hồ sơ
+              </Link>
+              <Link
+                to="/account#rentals"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+              >
+                Lịch sử đặt xe
+              </Link>
+              <Link
+                to="/account#saved"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+              >
+                Xe đã lưu
+              </Link>
+              <Link
+                to="/account#payments"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+              >
+                Phương thức thanh toán
+              </Link>
+              <button
+                onClick={() => {
+                  setOpen(false);
+                  auth.logout();
+                  navigate("/");
+                }}
+                className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-50"
+              >
+                Đăng xuất
+              </button>
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    return (
+      <Link
+        to="/login"
+        className="px-5 py-2.5 bg-[#54c6a8] text-white hover:text-black rounded-full font-medium hover:bg-gray-200 transition-colors "
+      >
+        Đăng nhập
+      </Link>
+    );
+  }
 }
 
 export default Header;

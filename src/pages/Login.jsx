@@ -1,17 +1,105 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaEye, FaEyeSlash, FaGoogle, FaFacebook } from "react-icons/fa6";
+import { FaGoogle, FaFacebook } from "react-icons/fa6";
 import { FaArrowLeft } from "react-icons/fa6";
 import carlogin from "../assets/images/carlogin.jpg";
+import { sendOtp, verifyOtp, resetPassword } from "../services/auth";
+import { useAuth } from "../context/useAuth";
+import { useNavigate, useLocation } from "react-router-dom";
+import LoginForm from "../components/auth/LoginForm";
+import OTPLogin from "../components/auth/OTPLogin";
+import ForgotPasswordCard from "../components/auth/ForgotPasswordCard";
+import RegisterFlow from "../components/auth/RegisterFlow";
 
 function LoginPage() {
   const [isLogin, setIsLogin] = useState(true); // true = Đăng nhập, false = Đăng ký
-  const [showPassword, setShowPassword] = useState(false);
 
-  // Hàm chuyển đổi giữa Login và Register
+  // OTP states (shared)
+  const [contact, setContact] = useState(""); // phone or email
+  const [otp, setOtp] = useState("");
+  const [isSending, setIsSending] = useState(false);
+  const [isVerifying, setIsVerifying] = useState(false);
+  const [otpSent, setOtpSent] = useState(false);
+  const [sendError, setSendError] = useState("");
+  const [verifyError, setVerifyError] = useState("");
+
+  // Forgot password flow
+  const [forgotMode, setForgotMode] = useState(false);
+  const [forgotStep, setForgotStep] = useState("contact");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [forgotSuccess, setForgotSuccess] = useState("");
+
+  const [regStep, setRegStep] = useState("contact");
+  const [loginOtpMode, setLoginOtpMode] = useState(false);
+
+  const auth = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/account";
+
+  // Helpers that wrap the auth service and manage local loading/errors
+  const handleSendOtp = async (destination) => {
+    setIsSending(true);
+    setSendError("");
+    try {
+      const res = await sendOtp(destination);
+      if (res.ok) {
+        setOtpSent(true);
+        return true;
+      }
+      setSendError(res.error || "Không thể gửi mã OTP");
+      return false;
+    } catch {
+      setSendError("Lỗi khi gửi mã OTP");
+      return false;
+    } finally {
+      setIsSending(false);
+    }
+  };
+
+  const handleVerifyOtp = async (destination, code) => {
+    setIsVerifying(true);
+    setVerifyError("");
+    try {
+      const res = await verifyOtp(destination, code);
+      if (res.ok) return { ok: true };
+      setVerifyError(res.error || "Mã OTP không chính xác");
+      return { ok: false };
+    } catch {
+      setVerifyError("Lỗi khi xác thực OTP");
+      return { ok: false };
+    } finally {
+      setIsVerifying(false);
+    }
+  };
+
+  const handleResetPassword = async (destination, code, password) => {
+    setIsSending(true);
+    setVerifyError("");
+    try {
+      const res = await resetPassword(destination, code, password);
+      if (res.ok) return { ok: true };
+      setVerifyError(res.error || "Không thể đặt lại mật khẩu");
+      return { ok: false };
+    } catch {
+      setVerifyError("Lỗi khi đặt lại mật khẩu");
+      return { ok: false };
+    } finally {
+      setIsSending(false);
+    }
+  };
+
   const toggleMode = () => {
-    setIsLogin(!isLogin);
-    // Reset form hoặc scroll lên đầu nếu cần
+    setIsLogin((s) => !s);
+    setRegStep("contact");
+    setLoginOtpMode(false);
+    setContact("");
+    setOtp("");
+    setOtpSent(false);
+    setSendError("");
+    setVerifyError("");
+    setForgotMode(false);
   };
 
   return (
@@ -60,79 +148,115 @@ function LoginPage() {
             </div>
           </div>
 
-          {/* Form nhập liệu */}
-          <form className="mt-8 space-y-6">
-            <div className="space-y-4">
-              {/* Chỉ hiện tên khi Đăng ký */}
-              {!isLogin && (
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Họ và tên
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
-                    placeholder="Nguyễn Văn A"
+          {/* Form nhập liệu / OTP flows */}
+          <div className="mt-8">
+            {isLogin ? (
+              // LOGIN UI
+              <div className="space-y-4">
+                {!loginOtpMode ? (
+                  <LoginForm
+                    onForgot={() => {
+                      setForgotMode(true);
+                      setForgotStep("contact");
+                      setContact("");
+                      setOtp("");
+                      setOtpSent(false);
+                      setForgotSuccess("");
+                    }}
+                    onSwitchToOtp={() => {
+                      setLoginOtpMode(true);
+                      setContact("");
+                      setOtp("");
+                      setOtpSent(false);
+                    }}
+                    onLogin={async (email, password) => {
+                      // If password provided, attempt password login
+                      if (password && password.length > 0) {
+                        const res = await import("../services/auth").then((m) =>
+                          m.loginWithPassword(email, password)
+                        );
+                        if (res.ok) {
+                          auth.login(res.user);
+                          navigate(from);
+                        } else {
+                          // show simple alert for now
+                          alert(res.error || "Đăng nhập thất bại");
+                        }
+                        return;
+                      }
+
+                      // Otherwise start OTP flow using provided contact
+                      setContact(email);
+                      setOtp("");
+                      setOtpSent(false);
+                      setLoginOtpMode(true);
+                    }}
                   />
-                </div>
-              )}
-
-              {/* Email */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
-                  placeholder="name@company.com"
-                />
-              </div>
-
-              {/* Password */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Mật khẩu
-                </label>
-                <div className="relative">
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
-                    placeholder="••••••••"
+                ) : (
+                  <OTPLogin
+                    contact={contact}
+                    setContact={setContact}
+                    otp={otp}
+                    setOtp={setOtp}
+                    otpSent={otpSent}
+                    setOtpSent={setOtpSent}
+                    isSending={isSending}
+                    isVerifying={isVerifying}
+                    handleSendOtp={handleSendOtp}
+                    handleVerifyOtp={handleVerifyOtp}
+                    setLoginOtpMode={setLoginOtpMode}
+                    onSuccess={async () => {
+                      await auth.loginFromService();
+                      navigate(from);
+                    }}
                   />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
-                  >
-                    {showPassword ? <FaEyeSlash /> : <FaEye />}
-                  </button>
-                </div>
+                )}
+
+                {/* FORGOT PASSWORD MODE (overlay on login) */}
+                {forgotMode && (
+                  <ForgotPasswordCard
+                    forgotStep={forgotStep}
+                    setForgotStep={setForgotStep}
+                    contact={contact}
+                    setContact={setContact}
+                    sendError={sendError}
+                    isSending={isSending}
+                    otp={otp}
+                    setOtp={setOtp}
+                    verifyError={verifyError}
+                    isVerifying={isVerifying}
+                    handleSendOtp={handleSendOtp}
+                    handleVerifyOtp={handleVerifyOtp}
+                    handleResetPassword={handleResetPassword}
+                    setForgotMode={setForgotMode}
+                    forgotSuccess={forgotSuccess}
+                    setForgotSuccess={setForgotSuccess}
+                    newPassword={newPassword}
+                    setNewPassword={setNewPassword}
+                    confirmPassword={confirmPassword}
+                    setConfirmPassword={setConfirmPassword}
+                  />
+                )}
               </div>
-
-              {/* Quên mật khẩu (Chỉ hiện khi Login) */}
-              {isLogin && (
-                <div className="flex items-center justify-end">
-                  <a
-                    href="#"
-                    className="text-sm font-medium text-blue-600 hover:text-blue-500"
-                  >
-                    Quên mật khẩu?
-                  </a>
-                </div>
-              )}
-            </div>
-
-            <button
-              type="submit"
-              className="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
-            >
-              {isLogin ? "Đăng nhập" : "Đăng ký tài khoản"}
-            </button>
-          </form>
+            ) : (
+              // REGISTER UI - multi-step
+              <RegisterFlow
+                regStep={regStep}
+                setRegStep={setRegStep}
+                contact={contact}
+                setContact={setContact}
+                otp={otp}
+                setOtp={setOtp}
+                sendError={sendError}
+                isSending={isSending}
+                verifyError={verifyError}
+                isVerifying={isVerifying}
+                handleSendOtp={handleSendOtp}
+                handleVerifyOtp={handleVerifyOtp}
+                setIsLogin={setIsLogin}
+              />
+            )}
+          </div>
 
           {/* Chuyển đổi Login/Register */}
           <div className="text-center mt-4">

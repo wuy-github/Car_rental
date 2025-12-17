@@ -32,7 +32,7 @@ export default function CarDetail() {
     <div className="min-h-screen bg-gray-50">
       {/* Top navigation: back + breadcrumb */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <div className="bg-white/80 backdrop-blur-sm rounded-lg shadow-lg px-4 py-3 flex items-center justify-between gap-4 transform-gpu transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-2xl">
+        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm px-4 py-3 flex items-center justify-between gap-4 transform-gpu transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-lg">
           <div className="flex items-center gap-4">
             <button
               onClick={() => navigate(-1)}
@@ -84,14 +84,14 @@ export default function CarDetail() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left: Gallery + Details (col-span 2 on large) */}
           <section className="lg:col-span-2 space-y-6">
-            <article className="bg-white rounded-lg shadow-sm overflow-hidden">
+            <article className="bg-white rounded-2xl shadow-sm overflow-hidden transform-gpu transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg">
               <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 p-4 items-start">
                 <div className="lg:col-span-3">
-                  <div className="rounded-lg overflow-hidden shadow-sm">
+                  <div className="rounded-xl overflow-hidden shadow-sm">
                     <img
                       src={main}
                       alt="car"
-                      className="w-full h-[460px] object-cover rounded-md"
+                      className="w-full h-[460px] object-cover rounded-lg"
                     />
                   </div>
 
@@ -100,9 +100,9 @@ export default function CarDetail() {
                       <button
                         key={i}
                         onClick={() => setMain(src)}
-                        className={`overflow-hidden rounded-md border transition-transform transform hover:scale-105 focus:outline-none ${
+                        className={`overflow-hidden rounded-md bg-white shadow-sm border transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#54c6a8]/30 ${
                           main === src
-                            ? "ring-2 ring-indigo-400 border-indigo-200"
+                            ? "ring-2 ring-[#54c6a8]/40 border-[#c7efe6]"
                             : "border-gray-100"
                         }`}
                         aria-label={`Chọn ảnh ${i + 1}`}
@@ -145,7 +145,9 @@ export default function CarDetail() {
                     </div>
 
                     <div className="mt-4 border-t pt-4">
-                      <h4 className="text-lg font-semibold mb-3">Đặc điểm</h4>
+                      <h4 className="text-lg font-semibold mb-3 text-[#54c6a8]">
+                        Đặc điểm
+                      </h4>
                       <div className="grid grid-cols-2 gap-3 text-sm text-gray-700">
                         <div className="flex flex-col">
                           <span className="text-xs text-gray-400">Số ghế</span>
@@ -179,45 +181,66 @@ export default function CarDetail() {
                     </div>
 
                     <div className="mt-6">
-                      <h4 className="text-lg font-semibold mb-2">Mô tả</h4>
+                      <h4 className="text-lg font-semibold mb-2 text-[#54c6a8]">
+                        Mô tả
+                      </h4>
                       <p className="text-gray-700 leading-relaxed">
                         {car.description}
                       </p>
                     </div>
 
                     <div className="mt-6">
-                      <h4 className="text-lg font-semibold mb-3">Vị trí xe</h4>
+                      <h4 className="text-lg font-semibold mb-3 text-[#54c6a8]">
+                        Vị trí xe
+                      </h4>
                       <p className="text-gray-700 mb-3">{car.address}</p>
 
-                      <div className="rounded overflow-hidden border">
-                        <iframe
-                          title="map"
-                          src={`https://www.google.com/maps?q=${encodeURIComponent(
-                            car.address
-                          )}&output=embed`}
-                          className="w-full h-56 border-0"
-                        />
+                      <div className="mt-2">
+                        <a
+                          href="#map-full"
+                          className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-[#54c6a8] text-white text-sm shadow-sm"
+                        >
+                          Xem bản đồ lớn hơn
+                        </a>
                       </div>
                     </div>
 
                     <div className="mt-6">
-                      <h4 className="text-lg font-semibold mb-3">
+                      <h4 className="text-lg font-semibold mb-3 text-[#54c6a8]">
                         Các tiện nghi khác
                       </h4>
-                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm text-gray-600">
-                        <div>Bluetooth</div>
-                        <div>Camera hành trình</div>
-                        <div>Định vị GPS</div>
-                        <div>Màn hình DVD</div>
-                        <div>Lốp dự phòng</div>
-                        <div>Số túi khí</div>
-                        <div>Cảm biến lùi</div>
-                        <div>ETC</div>
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <div className="p-2 bg-white rounded-md shadow-sm text-sm text-gray-700 transition-transform transform hover:-translate-y-0.5">
+                          Bluetooth
+                        </div>
+                        <div className="p-2 bg-white rounded-md shadow-sm text-sm text-gray-700 transition-transform transform hover:-translate-y-0.5">
+                          Camera hành trình
+                        </div>
+                        <div className="p-2 bg-white rounded-md shadow-sm text-sm text-gray-700 transition-transform transform hover:-translate-y-0.5">
+                          Định vị GPS
+                        </div>
+                        <div className="p-2 bg-white rounded-md shadow-sm text-sm text-gray-700 transition-transform transform hover:-translate-y-0.5">
+                          Màn hình DVD
+                        </div>
+                        <div className="p-2 bg-white rounded-md shadow-sm text-sm text-gray-700 transition-transform transform hover:-translate-y-0.5">
+                          Lốp dự phòng
+                        </div>
+                        <div className="p-2 bg-white rounded-md shadow-sm text-sm text-gray-700 transition-transform transform hover:-translate-y-0.5">
+                          Số túi khí
+                        </div>
+                        <div className="p-2 bg-white rounded-md shadow-sm text-sm text-gray-700 transition-transform transform hover:-translate-y-0.5">
+                          Cảm biến lùi
+                        </div>
+                        <div className="p-2 bg-white rounded-md shadow-sm text-sm text-gray-700 transition-transform transform hover:-translate-y-0.5">
+                          ETC
+                        </div>
                       </div>
                     </div>
 
                     <div className="mt-6">
-                      <h4 className="text-lg font-semibold mb-3">Điều khoản</h4>
+                      <h4 className="text-lg font-semibold mb-3 text-[#54c6a8]">
+                        Điều khoản
+                      </h4>
                       <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
                         <li>Sử dụng xe đúng mục đích.</li>
                         <li>Không hút thuốc trong xe.</li>
@@ -234,7 +257,7 @@ export default function CarDetail() {
           {/* Right: Booking sidebar */}
           <aside className="space-y-6">
             <div className="lg:sticky lg:top-24">
-              <div className="bg-white rounded-lg shadow p-5 transform-gpu transition hover:shadow-2xl">
+              <div className="bg-white rounded-2xl shadow-sm p-5 transform-gpu transition-transform duration-300 hover:shadow-lg hover:-translate-y-1">
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-sm text-gray-500">Tự nhận xe</div>
@@ -249,7 +272,7 @@ export default function CarDetail() {
                   </div>
                 </div>
 
-                <div className="mt-4 p-4 border rounded bg-gray-50">
+                <div className="mt-4 p-4 border border-gray-100 rounded-lg bg-white shadow-sm">
                   <div className="flex items-baseline justify-between">
                     <div className="text-sm text-gray-500">Giá</div>
                     <div className="text-sm text-gray-500">
@@ -272,7 +295,7 @@ export default function CarDetail() {
                   </label>
                   <input
                     type="datetime-local"
-                    className="w-full p-2 border rounded"
+                    className="w-full p-2 border border-gray-100 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-[#54c6a8]/30"
                   />
                 </div>
 
@@ -282,12 +305,12 @@ export default function CarDetail() {
                   </label>
                   <input
                     type="datetime-local"
-                    className="w-full p-2 border rounded"
+                    className="w-full p-2 border border-gray-100 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-[#54c6a8]/30"
                   />
                 </div>
 
                 <div className="mt-4">
-                  <button className="w-full bg-[#0f766e] hover:bg-[#0b6b61] text-white py-3 rounded font-semibold">
+                  <button className="w-full bg-[#0f766e] hover:bg-[#0b6b61] text-white py-3 rounded-lg font-semibold shadow-md transform transition-transform hover:-translate-y-0.5">
                     Thuê xe ngay
                   </button>
                 </div>
@@ -303,8 +326,8 @@ export default function CarDetail() {
                 </div>
               </div>
 
-              <div className="mt-4 bg-white rounded-lg shadow p-4 text-sm text-gray-700">
-                <h4 className="font-semibold text-gray-800 mb-2">
+              <div className="mt-4 bg-white rounded-lg shadow-sm p-4 text-sm text-gray-700">
+                <h4 className="font-semibold text-[#54c6a8] mb-2">
                   Phụ phí có thể phát sinh
                 </h4>
                 <ul className="space-y-2">
@@ -318,6 +341,22 @@ export default function CarDetail() {
           </aside>
         </div>
       </main>
+
+      {/* Full-width map */}
+      <div
+        id="map-full"
+        className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6"
+      >
+        <div className="rounded-2xl overflow-hidden border border-gray-100 shadow-sm bg-white">
+          <iframe
+            title="map-full"
+            src={`https://www.google.com/maps?q=${encodeURIComponent(
+              car.address
+            )}&output=embed`}
+            className="w-full h-[520px] md:h-[600px] lg:h-[720px] border-0"
+          />
+        </div>
+      </div>
     </div>
   );
 }

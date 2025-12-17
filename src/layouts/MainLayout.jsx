@@ -9,7 +9,7 @@ function MainLayout() {
       <Header />
 
       {/* Outlet là nơi nội dung của các trang (như HomePage) sẽ được "vẽ" ra */}
-      <main className="flex-grow bg-gray-50">
+      <main className="flex-1 bg-gray-50">
         <Outlet />
       </main>
 

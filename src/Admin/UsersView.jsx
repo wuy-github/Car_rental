@@ -7,7 +7,9 @@ const UserForm = ({ initial = {}, onCancel, onSave }) => {
     email: initial.email || "",
     role: initial.role || "User",
     status: initial.status || "Active",
+    password: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -32,6 +34,35 @@ const UserForm = ({ initial = {}, onCancel, onSave }) => {
             onChange={handleChange}
             className="w-full p-2 border rounded mt-1"
           />
+        </div>
+        <div>
+          <label className="text-sm font-medium">Mật khẩu</label>
+          <div className="flex items-center gap-2">
+            <input
+              name="password"
+              type={showPassword ? "text" : "password"}
+              value={form.password}
+              onChange={handleChange}
+              placeholder={
+                initial.name
+                  ? "Để trống nếu không đổi mật khẩu"
+                  : "Nhập mật khẩu"
+              }
+              className="w-full p-2 border rounded mt-1"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword((s) => !s)}
+              className="text-sm text-gray-500 px-2"
+            >
+              {showPassword ? "Ẩn" : "Hiện"}
+            </button>
+          </div>
+          {initial.name && (
+            <div className="text-xs text-gray-500 mt-1">
+              Để trống nếu không muốn đổi mật khẩu
+            </div>
+          )}
         </div>
         <div className="grid grid-cols-2 gap-2">
           <div>

@@ -41,7 +41,7 @@ function CarCard({ car }) {
       </div>
 
       {/* --- PHẦN NỘI DUNG --- */}
-      <div className="p-4 flex flex-col flex-grow">
+      <div className="p-4 flex flex-col flex-1">
         {/* Tên xe & Năm */}
         <h3 className="text-lg font-bold text-gray-800 mb-1 truncate uppercase">
           {car.name}
