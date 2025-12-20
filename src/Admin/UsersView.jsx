@@ -18,7 +18,7 @@ const UserForm = ({ initial = {}, onCancel, onSave }) => {
     <div className="p-4">
       <div className="space-y-3">
         <div>
-          <label className="text-sm font-medium">Họ và tên</label>
+          <label className="text-sm font-semibold">Họ và tên</label>
           <input
             name="name"
             value={form.name}
@@ -27,7 +27,7 @@ const UserForm = ({ initial = {}, onCancel, onSave }) => {
           />
         </div>
         <div>
-          <label className="text-sm font-medium">Email</label>
+          <label className="text-sm font-semibold">Email</label>
           <input
             name="email"
             value={form.email}
@@ -36,7 +36,7 @@ const UserForm = ({ initial = {}, onCancel, onSave }) => {
           />
         </div>
         <div>
-          <label className="text-sm font-medium">Mật khẩu</label>
+          <label className="text-sm font-semibold">Mật khẩu</label>
           <div className="flex items-center gap-2">
             <input
               name="password"
@@ -66,7 +66,7 @@ const UserForm = ({ initial = {}, onCancel, onSave }) => {
         </div>
         <div className="grid grid-cols-2 gap-2">
           <div>
-            <label className="text-sm font-medium">Vai trò</label>
+            <label className="text-sm font-semibold">Vai trò</label>
             <select
               name="role"
               value={form.role}
@@ -79,7 +79,7 @@ const UserForm = ({ initial = {}, onCancel, onSave }) => {
             </select>
           </div>
           <div>
-            <label className="text-sm font-medium">Trạng thái</label>
+            <label className="text-sm font-semibold">Trạng thái</label>
             <select
               name="status"
               value={form.status}

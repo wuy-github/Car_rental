@@ -101,7 +101,7 @@ const SettingsView = ({ profile = {}, onSave }) => {
                 </div>
               )}
             </div>
-            <label className="text-sm text-indigo-600 font-medium cursor-pointer">
+            <label className="text-sm text-indigo-600 font-semibold cursor-pointer">
               <input
                 type="file"
                 accept="image/*"
@@ -114,7 +114,7 @@ const SettingsView = ({ profile = {}, onSave }) => {
 
           <div className="flex-1 w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">
+              <label className="text-sm font-semibold text-gray-700">
                 Họ và tên
               </label>
               <input
@@ -126,7 +126,9 @@ const SettingsView = ({ profile = {}, onSave }) => {
               />
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">Email</label>
+              <label className="text-sm font-semibold text-gray-700">
+                Email
+              </label>
               <input
                 type="email"
                 name="email"
@@ -136,7 +138,7 @@ const SettingsView = ({ profile = {}, onSave }) => {
               />
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">
+              <label className="text-sm font-semibold text-gray-700">
                 Số điện thoại
               </label>
               <input
@@ -176,7 +178,7 @@ const SettingsView = ({ profile = {}, onSave }) => {
           </div>
 
           <div className="w-full sm:w-1/2 bg-gray-50 p-4 rounded">
-            <h4 className="font-medium mb-2">Đổi mật khẩu</h4>
+            <h4 className="font-semibold mb-2">Đổi mật khẩu</h4>
             <div className="space-y-2">
               <input
                 type="password"

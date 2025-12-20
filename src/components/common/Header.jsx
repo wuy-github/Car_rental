@@ -2,7 +2,12 @@ import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/useAuth";
 // Icons
-import { ChevronUpDownIcon, CheckIcon } from "@heroicons/react/20/solid";
+import {
+  ChevronUpDownIcon,
+  CheckIcon,
+  SunIcon,
+  MoonIcon,
+} from "@heroicons/react/20/solid";
 import { FaLocationDot } from "react-icons/fa6";
 
 // (lightweight dropdown implementation - no Headless UI)
@@ -25,6 +30,30 @@ function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef(null);
   const inputRef = useRef(null);
+
+  // --- Theme (dark / light) ---
+  const [isDark, setIsDark] = useState(() => {
+    try {
+      const t = localStorage.getItem("theme");
+      if (t) return t === "dark";
+      return (
+        typeof window !== "undefined" &&
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+      );
+    } catch {
+      return false;
+    }
+  });
+
+  useEffect(() => {
+    try {
+      document.documentElement.classList.toggle("dark", isDark);
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    } catch {
+      // ignore
+    }
+  }, [isDark]);
 
   useEffect(() => {
     function onDocClick(e) {
@@ -142,7 +171,7 @@ function Header() {
 
   //  (Chỉ cho Desktop) ---
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50">
+    <nav className="bg-white dark:bg-darkbg dark:text-gray-100 shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* 1. Logo */}
@@ -157,7 +186,7 @@ function Header() {
               <a
                 key={i}
                 href="#"
-                className="flex items-center p-2 text-gray-700 hover:bg-blue-50 hover:rounded-lg font-medium transition-all duration-200"
+                className="flex items-center p-2 text-gray-700 hover:bg-blue-50 hover:rounded-lg font-semibold transition-all duration-200 dark:text-gray-200"
               >
                 {item.label}
               </a>
@@ -165,6 +194,22 @@ function Header() {
           </div>
 
           <div className="flex items-center gap-3">
+            {/* Theme toggle */}
+            <button
+              onClick={() => setIsDark((v) => !v)}
+              aria-label={
+                isDark ? "Switch to light mode" : "Switch to dark mode"
+              }
+              title={isDark ? "Light mode" : "Dark mode"}
+              className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            >
+              {isDark ? (
+                <SunIcon className="w-5 h-5 text-yellow-400" />
+              ) : (
+                <MoonIcon className="w-5 h-5 text-gray-700" />
+              )}
+            </button>
+
             <AuthToggle />
           </div>
         </div>

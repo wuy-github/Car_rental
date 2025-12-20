@@ -38,7 +38,7 @@ export default function ForgotPasswordCard({
           {forgotStep === "contact" && (
             <div className="space-y-3">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-semibold text-gray-700 mb-1">
                   Email hoặc SĐT
                 </label>
                 <input
@@ -81,7 +81,7 @@ export default function ForgotPasswordCard({
           {forgotStep === "otp" && (
             <div className="space-y-3">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-semibold text-gray-700 mb-1">
                   Mã OTP
                 </label>
                 <input
@@ -148,7 +148,7 @@ export default function ForgotPasswordCard({
               className="space-y-3"
             >
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-semibold text-gray-700 mb-1">
                   Mật khẩu mới
                 </label>
                 <input
@@ -160,7 +160,7 @@ export default function ForgotPasswordCard({
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-semibold text-gray-700 mb-1">
                   Xác nhận mật khẩu
                 </label>
                 <input

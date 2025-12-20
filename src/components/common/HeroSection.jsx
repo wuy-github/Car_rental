@@ -71,7 +71,7 @@ function HeroSection() {
       {/* 2. NỘI DUNG CHÍNH */}
       <div className="relative z-10 max-w-9xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex  flex-col justify-center">
         {/* THANH TÌM KIẾM (Search Box) */}
-        <div className="bg-white rounded-lg shadow-xl p-6 mt-[-250px] ">
+        <div className="bg-white dark:bg-darkbg dark:text-gray-100 rounded-lg shadow-xl p-6 mt-[-250px] ">
           <div className="flex flex-col md:flex-row gap-4 items-end ">
             {/* Cột 1: Địa điểm */}
             <div className="w-full md:w-1/3">
@@ -84,7 +84,7 @@ function HeroSection() {
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                   placeholder="Nhập địa điểm, quận, huyện..."
-                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-[#54c6a8] focus:ring-1 focus:ring-blue-500 transition-colors font-medium text-gray-900"
+                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-[#54c6a8] focus:ring-1 focus:ring-blue-500 transition-colors font-medium text-gray-900 dark:bg-transparent dark:text-gray-200 dark:border-transparent"
                 />
               </div>
             </div>
@@ -99,13 +99,13 @@ function HeroSection() {
                   type="date"
                   value={pickupDate}
                   onChange={(e) => setPickupDate(e.target.value)}
-                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 font-medium text-gray-700"
+                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 font-medium text-gray-700 dark:bg-transparent dark:text-gray-200 dark:border-transparent"
                 />
                 <input
                   type="time"
                   value={pickupTime}
                   onChange={(e) => setPickupTime(e.target.value)}
-                  className="w-1/2 p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 font-medium text-gray-700"
+                  className="w-1/2 p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 font-medium text-gray-700 dark:bg-transparent dark:text-gray-200 dark:border-transparent"
                 />
               </div>
             </div>
@@ -120,13 +120,13 @@ function HeroSection() {
                   type="date"
                   value={dropDate}
                   onChange={(e) => setDropDate(e.target.value)}
-                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 font-medium text-gray-700"
+                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 font-medium text-gray-700 dark:bg-transparent dark:text-gray-200 dark:border-transparent"
                 />
                 <input
                   type="time"
                   value={dropTime}
                   onChange={(e) => setDropTime(e.target.value)}
-                  className="w-1/2 p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 font-medium text-gray-700"
+                  className="w-1/2 p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 font-medium text-gray-700 dark:bg-transparent dark:text-gray-200 dark:border-transparent"
                 />
               </div>
             </div>

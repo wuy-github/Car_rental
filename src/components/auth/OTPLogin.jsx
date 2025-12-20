@@ -67,7 +67,7 @@ export default function OTPLogin({
       ) : (
         <div className="space-y-2">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
               Mã OTP
             </label>
             <input

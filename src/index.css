@@ -1,1 +1,44 @@
 @import "tailwindcss";
+
+/* -- Theme variables (light / dark) -- */
+:root {
+  --bg: #ffffff;
+  --text: #0f172a; /* slate-900 */
+  --muted: #6b7280; /* gray-500 */
+  --card: #ffffff;
+  --border: #f3f4f6; /* gray-100 */
+}
+
+/* Dark mode overrides (class-based) */
+.dark {
+  --bg: #0b1220; /* fallback dark surface */
+  --text: #e6eef6; /* light text */
+  --muted: #9aa6b6;
+  --card: #1E293B; /* requested dark BG */
+  --border: rgba(255,255,255,0.06);
+}
+
+/* Apply base background & text colors */
+html, body, #root {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* Provide quick utility-style overrides so existing Tailwind classes behave in dark mode */
+.dark .bg-white { background-color: var(--card) !important; }
+.dark .bg-white\/90 { background-color: rgba(30,41,59,0.9) !important; }
+.dark .text-gray-700 { color: var(--text) !important; }
+.dark .text-gray-500 { color: var(--muted) !important; }
+.dark .border-gray-100 { border-color: var(--border) !important; }
+.dark .shadow-sm { box-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+
+/* Ensure accent color remains the same in dark mode */
+/* Any element using inline `#54c6a8` or the `accent` color will be preserved. */
+
+/* Additional common overrides */
+.dark .bg-gray-50 { background-color: rgba(255,255,255,0.02) !important; }
+.dark .border-gray-200 { border-color: rgba(255,255,255,0.04) !important; }
+.dark .text-gray-900 { color: var(--text) !important; }
+
+/* Small helper: dark-safe backgrounds for translucent utilities used in project */
+.dark .backdrop-blur-sm { background-color: rgba(255,255,255,0.02); }
