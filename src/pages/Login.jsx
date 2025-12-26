@@ -109,7 +109,7 @@ function LoginPage() {
         {/* Nút quay lại trang chủ */}
         <Link
           to="/"
-          className="absolute top-8 left-8 text-gray-500 hover:text-blue-600 flex items-center gap-2 font-medium transition-colors"
+          className="absolute top-8 left-8 text-black hover:text-blue-600 flex items-center gap-2 font-medium transition-colors"
         >
           <FaArrowLeft /> Trang chủ
         </Link>
@@ -117,10 +117,10 @@ function LoginPage() {
         <div className="w-full max-w-md space-y-8">
           {/* Header của form */}
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
+            <h1 className="text-3xl font-bold text-black tracking-tight">
               {isLogin ? "Chào mừng trở lại!" : "Tạo tài khoản mới"}
             </h1>
-            <p className="mt-2 text-sm text-gray-600">
+            <p className="mt-2 text-sm text-black">
               {isLogin
                 ? "Nhập thông tin để truy cập vào tài khoản của bạn."
                 : "Điền thông tin bên dưới để bắt đầu hành trình."}
@@ -129,11 +129,11 @@ function LoginPage() {
 
           {/* Các nút Social Login */}
           <div className="flex flex-col gap-3">
-            <button className="flex items-center justify-center w-full px-4 py-2.5 border border-gray-300 rounded-lg text-gray-700 bg-white hover:bg-gray-50 font-medium transition-all">
+            <button className="flex items-center justify-center w-full px-4 py-2.5 border border-gray-300 rounded-lg text-black bg-white hover:bg-gray-50 font-medium transition-all">
               <FaGoogle className="text-red-500 mr-2" />
               Tiếp tục với Google
             </button>
-            <button className="flex items-center justify-center w-full px-4 py-2.5 border border-gray-300 rounded-lg text-gray-700 bg-white hover:bg-gray-50 font-medium transition-all">
+            <button className="flex items-center justify-center w-full px-4 py-2.5 border border-gray-300 rounded-lg text-black bg-white hover:bg-gray-50 font-medium transition-all">
               <FaFacebook className="text-blue-600 mr-2" />
               Tiếp tục với Facebook
             </button>
@@ -144,7 +144,7 @@ function LoginPage() {
               <div className="w-full border-t border-gray-300"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">Hoặc</span>
+              <span className="px-2 bg-white text-black">Hoặc</span>
             </div>
           </div>
 

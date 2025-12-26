@@ -12,7 +12,10 @@ import { FaLocationDot } from "react-icons/fa6";
 
 // (lightweight dropdown implementation - no Headless UI)
 
-const menuItems = [{ label: "Ký gửi xe" }, { label: "Blog" }];
+const menuItems = [
+  { label: "Ký gửi xe", to: "/ky-gui-xe" },
+  { label: "Blog", to: "/blog" },
+];
 
 // Keep provinces array stable across renders so object identity remains
 const provinces = [
@@ -94,7 +97,7 @@ function Header() {
   const LocationSelector = () => (
     <div className="relative w-48" ref={containerRef}>
       <div
-        className="flex items-center w-full p-2 text-gray-700 hover:bg-blue-50 hover:rounded-lg font-medium transition-all duration-200 cursor-pointer select-none"
+        className="flex items-center w-full p-2 text-black hover:bg-blue-50 hover:rounded-lg font-medium transition-all duration-200 cursor-pointer select-none"
         onClick={(e) => {
           e.stopPropagation();
           setIsOpen((v) => !v);
@@ -130,7 +133,7 @@ function Header() {
           </div>
 
           {filteredProvinces.length === 0 && query !== "" ? (
-            <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
+            <div className="relative cursor-default select-none py-2 px-4 text-black">
               Không tìm thấy.
             </div>
           ) : (
@@ -151,7 +154,7 @@ function Header() {
                   className={`relative cursor-pointer select-none py-2 pl-10 pr-4 ${
                     isSelected
                       ? "bg-blue-100 text-blue-900 font-medium"
-                      : "text-gray-900"
+                      : "text-black"
                   } hover:bg-gray-100`}
                 >
                   <span className="block truncate">{province.name}</span>
@@ -183,13 +186,13 @@ function Header() {
           <div className="flex items-center space-x-8">
             <LocationSelector />
             {menuItems.map((item, i) => (
-              <a
+              <Link
                 key={i}
-                href="#"
-                className="flex items-center p-2 text-gray-700 hover:bg-blue-50 hover:rounded-lg font-semibold transition-all duration-200 dark:text-gray-200"
+                to={item.to || "#"}
+                className="flex items-center p-2 text-black hover:bg-blue-50 hover:rounded-lg font-semibold transition-all duration-200 dark:text-gray-200"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -206,7 +209,7 @@ function Header() {
               {isDark ? (
                 <SunIcon className="w-5 h-5 text-yellow-400" />
               ) : (
-                <MoonIcon className="w-5 h-5 text-gray-700" />
+                <MoonIcon className="w-5 h-5 text-black" />
               )}
             </button>
 
@@ -255,7 +258,7 @@ function Header() {
                 {initials}
               </div>
             )}
-            <span className="hidden sm:inline text-sm text-gray-700">
+            <span className="hidden sm:inline text-sm text-black">
               {name.split(" ")[0]}
             </span>
           </button>
@@ -264,13 +267,13 @@ function Header() {
             <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-50">
               <Link
                 to="/account#profile"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                className="block px-4 py-2 text-sm text-black hover:bg-gray-50"
               >
                 Hồ sơ
               </Link>
               <Link
                 to="/account#rentals"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                className="block px-4 py-2 text-sm text-black hover:bg-gray-50"
               >
                 Lịch sử đặt xe
               </Link>

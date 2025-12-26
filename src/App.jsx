@@ -9,6 +9,7 @@ import LoginPage from "./pages/Login";
 import CarDetail from "./pages/CarDetail";
 import CarsList from "./pages/CarsList";
 import Account from "./pages/Account";
+import KyGuiXe from "./pages/KyGuiXe";
 import { useAuth } from "./context/useAuth";
 import { Navigate, useLocation } from "react-router-dom";
 
@@ -56,6 +57,7 @@ function App() {
 
         <Route path="/cars" element={<CarsList />} />
         <Route path="/cars/:id" element={<CarDetail />} />
+        <Route path="/ky-gui-xe" element={<KyGuiXe />} />
         <Route
           path="/account"
           element={

@@ -75,7 +75,7 @@ function HeroSection() {
           <div className="flex flex-col md:flex-row gap-4 items-end ">
             {/* Cột 1: Địa điểm */}
             <div className="w-full md:w-1/3">
-              <label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
+              <label className="block text-sm font-bold text-black mb-2 flex items-center gap-2">
                 <FaMapMarkerAlt className="text-[#54c6a8]" /> Địa điểm nhận xe
               </label>
               <div className="relative">
@@ -84,14 +84,14 @@ function HeroSection() {
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                   placeholder="Nhập địa điểm, quận, huyện..."
-                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-[#54c6a8] focus:ring-1 focus:ring-blue-500 transition-colors font-medium text-gray-900 dark:bg-transparent dark:text-gray-200 dark:border-transparent"
+                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-[#54c6a8] focus:ring-1 focus:ring-blue-500 transition-colors font-medium text-black dark:bg-transparent dark:text-gray-200 dark:border-transparent"
                 />
               </div>
             </div>
 
             {/* Cột 2: Ngày & Giờ Nhận */}
             <div className="w-full md:w-1/4">
-              <label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
+              <label className="block text-sm font-bold text-black mb-2 flex items-center gap-2">
                 <FaCalendarAlt className="text-[#54c6a8]" /> Ngày nhận xe
               </label>
               <div className="flex gap-2">
@@ -99,20 +99,20 @@ function HeroSection() {
                   type="date"
                   value={pickupDate}
                   onChange={(e) => setPickupDate(e.target.value)}
-                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 font-medium text-gray-700 dark:bg-transparent dark:text-gray-200 dark:border-transparent"
+                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 font-medium text-black dark:bg-transparent dark:text-gray-200 dark:border-transparent"
                 />
                 <input
                   type="time"
                   value={pickupTime}
                   onChange={(e) => setPickupTime(e.target.value)}
-                  className="w-1/2 p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 font-medium text-gray-700 dark:bg-transparent dark:text-gray-200 dark:border-transparent"
+                  className="w-1/2 p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 font-medium text-black dark:bg-transparent dark:text-gray-200 dark:border-transparent"
                 />
               </div>
             </div>
 
             {/* Cột 3: Ngày & Giờ Trả */}
             <div className="w-full md:w-1/4">
-              <label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
+              <label className="block text-sm font-bold text-black mb-2 flex items-center gap-2">
                 <FaCalendarAlt className="text-[#54c6a8]" /> Ngày trả xe
               </label>
               <div className="flex gap-2">
@@ -120,13 +120,13 @@ function HeroSection() {
                   type="date"
                   value={dropDate}
                   onChange={(e) => setDropDate(e.target.value)}
-                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 font-medium text-gray-700 dark:bg-transparent dark:text-gray-200 dark:border-transparent"
+                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 font-medium text-black dark:bg-transparent dark:text-gray-200 dark:border-transparent"
                 />
                 <input
                   type="time"
                   value={dropTime}
                   onChange={(e) => setDropTime(e.target.value)}
-                  className="w-1/2 p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 font-medium text-gray-700 dark:bg-transparent dark:text-gray-200 dark:border-transparent"
+                  className="w-1/2 p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 font-medium text-black dark:bg-transparent dark:text-gray-200 dark:border-transparent"
                 />
               </div>
             </div>

@@ -36,11 +36,11 @@ export default function CarDetail() {
           <div className="flex items-center gap-4">
             <button
               onClick={() => navigate(-1)}
-              className="inline-flex items-center gap-2 px-3 py-2 bg-white rounded-md shadow-sm text-sm font-medium text-gray-700 hover:shadow-md transform transition hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 px-3 py-2 bg-white rounded-md shadow-sm text-sm font-medium text-black hover:shadow-md transform transition hover:-translate-y-0.5"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 text-gray-600"
+                className="h-4 w-4 text-black"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -55,16 +55,16 @@ export default function CarDetail() {
               Quay lại
             </button>
 
-            <nav className="text-sm text-gray-600">
+            <nav className="text-sm text-black">
               <ol className="flex items-center gap-2">
                 <li>
-                  <a href="/" className="hover:text-gray-900">
+                  <a href="/" className="hover:text-black">
                     Trang chủ
                   </a>
                 </li>
                 <li className="text-gray-300">/</li>
                 <li>
-                  <a href="/cars" className="hover:text-gray-900">
+                  <a href="/cars" className="hover:text-black">
                     Xe thuê
                   </a>
                 </li>
@@ -74,7 +74,7 @@ export default function CarDetail() {
             </nav>
           </div>
 
-          <div className="text-sm text-gray-600">
+          <div className="text-sm text-black">
             ID: <span className="font-medium text-gray-800">{car.id}</span>
           </div>
         </div>
@@ -121,10 +121,10 @@ export default function CarDetail() {
                   <div className="p-4">
                     <div className="flex items-start justify-between">
                       <div>
-                        <h1 className="text-2xl font-extrabold text-gray-900">
+                        <h1 className="text-2xl font-extrabold text-black">
                           {car.title}
                         </h1>
-                        <div className="mt-2 flex items-center gap-3 text-sm text-gray-600">
+                        <div className="mt-2 flex items-center gap-3 text-sm text-black">
                           <span className="inline-flex items-center gap-1 px-2 py-1 bg-gray-100 rounded-full text-xs">
                             ID: {car.id}
                           </span>
@@ -135,10 +135,10 @@ export default function CarDetail() {
                       </div>
 
                       <div className="text-right">
-                        <div className="text-3xl font-bold text-gray-900">
+                        <div className="text-3xl font-bold text-black">
                           {car.price}
                         </div>
-                        <div className="text-sm text-gray-500">
+                        <div className="text-sm text-black">
                           {car.priceLabel}
                         </div>
                       </div>
@@ -148,7 +148,7 @@ export default function CarDetail() {
                       <h4 className="text-lg font-semibold mb-3 text-[#54c6a8]">
                         Đặc điểm
                       </h4>
-                      <div className="grid grid-cols-2 gap-3 text-sm text-gray-700">
+                      <div className="grid grid-cols-2 gap-3 text-sm text-black">
                         <div className="flex flex-col">
                           <span className="text-xs text-gray-400">Số ghế</span>
                           <strong className="mt-1 text-base">
@@ -184,7 +184,7 @@ export default function CarDetail() {
                       <h4 className="text-lg font-semibold mb-2 text-[#54c6a8]">
                         Mô tả
                       </h4>
-                      <p className="text-gray-700 leading-relaxed">
+                      <p className="text-black leading-relaxed">
                         {car.description}
                       </p>
                     </div>
@@ -193,7 +193,7 @@ export default function CarDetail() {
                       <h4 className="text-lg font-semibold mb-3 text-[#54c6a8]">
                         Vị trí xe
                       </h4>
-                      <p className="text-gray-700 mb-3">{car.address}</p>
+                      <p className="text-black mb-3">{car.address}</p>
 
                       <div className="mt-2">
                         <a
@@ -210,28 +210,28 @@ export default function CarDetail() {
                         Các tiện nghi khác
                       </h4>
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                        <div className="p-2 bg-white rounded-md shadow-sm text-sm text-gray-700 transition-transform transform hover:-translate-y-0.5">
+                        <div className="p-2 bg-white rounded-md shadow-sm text-sm text-black transition-transform transform hover:-translate-y-0.5">
                           Bluetooth
                         </div>
-                        <div className="p-2 bg-white rounded-md shadow-sm text-sm text-gray-700 transition-transform transform hover:-translate-y-0.5">
+                        <div className="p-2 bg_white rounded-md shadow-sm text-sm text-black transition-transform transform hover:-translate-y-0.5">
                           Camera hành trình
                         </div>
-                        <div className="p-2 bg-white rounded-md shadow-sm text-sm text-gray-700 transition-transform transform hover:-translate-y-0.5">
+                        <div className="p-2 bg-white rounded-md shadow-sm text-sm text-black transition-transform transform hover:-translate-y-0.5">
                           Định vị GPS
                         </div>
-                        <div className="p-2 bg-white rounded-md shadow-sm text-sm text-gray-700 transition-transform transform hover:-translate-y-0.5">
+                        <div className="p-2 bg-white rounded-md shadow-sm text-sm text-black transition-transform transform hover:-translate-y-0.5">
                           Màn hình DVD
                         </div>
-                        <div className="p-2 bg-white rounded-md shadow-sm text-sm text-gray-700 transition-transform transform hover:-translate-y-0.5">
+                        <div className="p-2 bg-white rounded-md shadow-sm text-sm text-black transition-transform transform hover:-translate-y-0.5">
                           Lốp dự phòng
                         </div>
-                        <div className="p-2 bg-white rounded-md shadow-sm text-sm text-gray-700 transition-transform transform hover:-translate-y-0.5">
+                        <div className="p-2 bg_white rounded-md shadow-sm text-sm text-black transition-transform transform hover:-translate-y-0.5">
                           Số túi khí
                         </div>
-                        <div className="p-2 bg-white rounded-md shadow-sm text-sm text-gray-700 transition-transform transform hover:-translate-y-0.5">
+                        <div className="p-2 bg-white rounded-md shadow-sm text-sm text-black transition-transform transform hover:-translate-y-0.5">
                           Cảm biến lùi
                         </div>
-                        <div className="p-2 bg-white rounded-md shadow-sm text-sm text-gray-700 transition-transform transform hover:-translate-y-0.5">
+                        <div className="p-2 bg-white rounded-md shadow-sm text-sm text-black transition-transform transform hover:-translate-y-0.5">
                           ETC
                         </div>
                       </div>
@@ -241,7 +241,7 @@ export default function CarDetail() {
                       <h4 className="text-lg font-semibold mb-3 text-[#54c6a8]">
                         Điều khoản
                       </h4>
-                      <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
+                      <ul className="list-disc list-inside text-sm text-black space-y-1">
                         <li>Sử dụng xe đúng mục đích.</li>
                         <li>Không hút thuốc trong xe.</li>
                         <li>Không chở hàng nguy hiểm.</li>
@@ -260,8 +260,8 @@ export default function CarDetail() {
               <div className="bg-white rounded-2xl shadow-sm p-5 transform-gpu transition-transform duration-300 hover:shadow-lg hover:-translate-y-1">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-sm text-gray-500">Tự nhận xe</div>
-                    <div className="text-xs text-gray-400">
+                    <div className="text-sm text-black">Tự nhận xe</div>
+                    <div className="text-xs text-black">
                       Nhanh, tiện lợi và tiết kiệm
                     </div>
                   </div>
@@ -280,7 +280,7 @@ export default function CarDetail() {
                     </div>
                   </div>
                   <div className="mt-2 flex items-end justify-between">
-                    <div className="text-2xl font-bold text-gray-900">
+                    <div className="text-2xl font-bold text-black">
                       {car.price}
                     </div>
                     <div className="text-sm text-green-600 font-medium">
@@ -315,7 +315,7 @@ export default function CarDetail() {
                   </button>
                 </div>
 
-                <div className="mt-4 text-sm text-gray-600">
+                <div className="mt-4 text-sm text-black">
                   <div className="flex justify-between">
                     <span>Tổng tạm tính</span>
                     <strong>3.193.155₫</strong>
@@ -326,7 +326,7 @@ export default function CarDetail() {
                 </div>
               </div>
 
-              <div className="mt-4 bg-white rounded-lg shadow-sm p-4 text-sm text-gray-700">
+              <div className="mt-4 bg-white rounded-lg shadow-sm p-4 text-sm text-black">
                 <h4 className="font-semibold text-[#54c6a8] mb-2">
                   Phụ phí có thể phát sinh
                 </h4>
